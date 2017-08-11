@@ -2,7 +2,6 @@ package org.galigeigei.service.impl;
 
 import java.util.List;
 
-import org.galigeigei.core.exception.AppException;
 import org.galigeigei.dao.UserMapper;
 import org.galigeigei.domain.User;
 import org.galigeigei.service.UserService;
@@ -10,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+	
 /**
  * @author fudongri
  */
