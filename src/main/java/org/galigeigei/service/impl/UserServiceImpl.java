@@ -8,8 +8,10 @@ import org.galigeigei.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-	
+
 /**
  * @author fudongri
  */
@@ -21,26 +23,33 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 
+	@Cacheable(value = "users")
 	@Override
 	public List<User> findAll() {
-		return userMapper.findAll();
+		List<User> users = userMapper.findAll();
+		return users;
 	}
 
+	@Cacheable(value = "user")
 	@Override
 	public User findById(int id) {
+		logger.debug("find user by id:{}", id);
 		return userMapper.selectByPrimaryKey(id);
 	}
 
+	@CacheEvict(value = { "users", "user" }, allEntries = true)
 	@Override
 	public void update(User user) {
 		userMapper.updateByPrimaryKeySelective(user);
 	}
 
+	@CacheEvict(value = { "users" }, allEntries = true)
 	@Override
 	public void add(User user) {
 		userMapper.insertSelective(user);
 	}
 
+	@CacheEvict(value = { "users", "user" }, allEntries = true)
 	@Override
 	public void deleteById(int id) {
 		userMapper.deleteByPrimaryKey(id);

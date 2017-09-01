@@ -1,8 +1,10 @@
 package org.galigeigei.domain;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
-public class User {
+public class User implements Serializable {
 	private Integer id;
 
 	@NotNull(message = "姓名为空")

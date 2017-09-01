@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author fudongri
  */
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1")
 public class UserController {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,7 +40,7 @@ public class UserController {
 	/**
 	 * 添加用户
 	 */
-	@PostMapping()
+	@PostMapping("/users")
 	public ApiResultModel add(@RequestBody @Valid User user, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return ApiResult.error(ApiResultEnum.PARAM_ERROR.getCode(),
@@ -54,7 +54,7 @@ public class UserController {
 	/**
 	 * 查询所有
 	 */
-	@GetMapping()
+	@GetMapping("/users")
 	public List<User> findAll() {
 		List<User> userList = userService.findAll();
 		return userList;
@@ -63,7 +63,7 @@ public class UserController {
 	/**
 	 * 根据Id查询
 	 */
-	@GetMapping("/{id}")
+	@GetMapping("/users/{id}")
 	public ResponseEntity<User> findById(@PathVariable int id) {
 		User user = userService.findById(id);
 		return ResponseEntity.ok(user);
@@ -72,7 +72,7 @@ public class UserController {
 	/**
 	 * 更新
 	 */
-	@PutMapping("/{id}")
+	@PutMapping("/users/{id}")
 	public void update(@PathVariable int id, @RequestBody User user) {
 		user.setId(id);
 		userService.update(user);
@@ -81,7 +81,7 @@ public class UserController {
 	/**
 	 * 删除
 	 */
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/users/{id}")
 	public void delete(@PathVariable int id) {
 		userService.deleteById(id);
 	}
