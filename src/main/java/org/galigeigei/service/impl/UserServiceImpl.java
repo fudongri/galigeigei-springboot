@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
 		return users;
 	}
 
+
 	@Cacheable(value = "user")
 	@Override
 	public User findById(int id) {
