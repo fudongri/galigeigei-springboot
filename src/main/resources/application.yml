@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.111:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    url: jdbc:mysql://node1:3306/ftest?useUnicode=true&characterEncoding=utf-8&useSSL=true
     username: root
     password: 123456
     hikari: #可配置项看这里 com.zaxxer.hikari.HikariConfig
@@ -13,7 +13,7 @@ spring:
       maximumPoolSize: 15 #连接池中允许的最大连接数，缺省值：10 connections = ((core_count * 2) + effective_spindle_count)
       idleTimeout: 600000 #一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
   redis:
-    host: 192.168.1.111
+    host: node1
     port: 6379
     pool:
       max-idle: 8
