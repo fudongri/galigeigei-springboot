@@ -74,7 +74,7 @@ public class UserController {
 	@PutMapping("/users/{id}")
 	public void update(@PathVariable int id, @RequestBody User user) {
 		user.setId(id);
-		userService.update(user);   a
+		userService.update(user);   //ab
 	}
 
 	/**
