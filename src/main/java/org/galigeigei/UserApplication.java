@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author fudongri
+ *
  */
 @SpringBootApplication
 public class UserApplication {

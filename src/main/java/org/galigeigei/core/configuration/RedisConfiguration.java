@@ -17,8 +17,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
 /**
  * redis 配置
- *
- * @author fdr
+ * @author fudongri
  */
 @Configuration
 @EnableCaching
@@ -38,15 +37,14 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 
     @Bean
     public CacheManager cacheManager(RedisTemplate<?, ?> redisTemplate) {
-        CacheManager cacheManager = new RedisCacheManager(redisTemplate);
-        return cacheManager;
+        return new RedisCacheManager(redisTemplate);
 
     }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(
                 Object.class);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
